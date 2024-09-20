@@ -59,9 +59,9 @@ app.post("/atualizar", function(req,res){
 })
 
 app.get("/excluir/:id", function(req, res) {
-    post.findAll({ where: { id: req.params.id } }).then(post => {
-        if (post) {
-            res.render("quarta_pagina", { post });
+    post.findAll({ where: { id: req.body.id } }).then(posts => {
+        if (posts) {
+            res.render("quarta_pagina", { posts });
         } else {
             res.status(404).send("Post não encontrado");
         }
@@ -71,7 +71,7 @@ app.get("/excluir/:id", function(req, res) {
     });
 });
 
-app.post("/confirmar", function(req, res) {
+app.post("/excluir", function(req, res) {
     post.destroy({ where: { id: req.body.id } }).then(() => {
         console.log("Dados excluídos com sucesso!");
         res.redirect("/consultar"); 

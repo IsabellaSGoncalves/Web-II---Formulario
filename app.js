@@ -59,7 +59,7 @@ app.post("/atualizar", function(req,res){
 })
 
 app.get("/excluir/:id", function(req, res) {
-    post.findAll({ where: { id: req.body.id } }).then(posts => {
+    post.findAll({ where: { id: req.params.id } }).then(posts => {
         if (posts) {
             res.render("quarta_pagina", { posts });
         } else {
